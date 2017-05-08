@@ -1,0 +1,40 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+
+one:
+
+
+  name: MyString
+
+
+
+
+  uuid: MyString
+
+
+
+
+  ip: MyString
+
+
+
+
+two:
+
+
+  name: MyString
+
+
+
+
+  uuid: MyString
+
+
+
+
+  ip: MyString
+
+
+
+
+

@@ -1,0 +1,40 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+
+one:
+
+
+  url: MyString
+
+
+
+
+  note: MyText
+
+
+
+
+  portrait: false
+
+
+
+
+two:
+
+
+  url: MyString
+
+
+
+
+  note: MyText
+
+
+
+
+  portrait: false
+
+
+
+
+
