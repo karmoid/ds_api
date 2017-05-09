@@ -1,7 +1,7 @@
-
+require 'net/http'
 
 class DevicesController < ApplicationController
-  before_action :set_device, only: [:show, :update, :destroy]
+  before_action :set_device, only: [:show, :update, :destroy, :reload, :refresh, :stop, :start]
 
   # GET /devices
   def index
@@ -13,6 +13,34 @@ class DevicesController < ApplicationController
   # GET /devices/1
   def show
     render json: @device
+  end
+
+  # GET /devices/1/reload
+  def reload
+    if ! @device.ip.nil?
+      send_command(@device.ip,"reload")
+    end
+  end
+
+  # GET /devices/1/refresh
+  def refresh
+    if ! @device.ip.nil?
+      send_command(@device.ip,"refresh")
+    end
+  end
+
+  # GET /devices/1/refresh
+  def stop
+    if ! @device.ip.nil?
+      send_command(@device.ip,"stop")
+    end
+  end
+
+  # GET /devices/1/refresh
+  def start
+    if ! @device.ip.nil?
+      send_command(@device.ip,"play")
+    end
   end
 
   # POST /devices
@@ -57,8 +85,18 @@ class DevicesController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def device_params
-
       params.require(:device).permit(:name, :uuid, :ip, :playlist_id, :place_id)
-
     end
+
+    # GET /devices/1/COMMANDE
+    def send_command(ip, cmd)
+      uri = URI("http://#{ip}:8000/#{cmd}")
+      puts "Get uri:#{uri}"
+      req = Net::HTTP.get(uri)
+      puts "Reply:#{req}" #show result
+      respond_to do |format|
+        format.js  {}
+      end
+    end
+
 end

@@ -24,6 +24,7 @@ show do
     table_for playlist.playitems.order(:order) do
       column :page
       column :order
+      column :cmd
       column :value
     end
   end
