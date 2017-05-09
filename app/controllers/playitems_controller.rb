@@ -28,6 +28,7 @@ class PlayitemsController < ApplicationController
 
   # PATCH/PUT /playitems/1
   def update
+    puts playitem_params.inspect
     if @playitem.update(playitem_params)
       render json: @playitem
     else
@@ -49,8 +50,7 @@ class PlayitemsController < ApplicationController
     # Only allow a trusted parameter "white list" through.
     def playitem_params
 
-      params.require(:playitem).permit(:order, :cmd, :value, :page_id)
+      params.require(:playitem).permit(:order, :cmd, :value, :page_id, :playlist_id)
 
     end
 end
-

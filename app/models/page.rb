@@ -1,6 +1,9 @@
 
 class Page < ApplicationRecord
-belongs_to :playlist
+  has_many :playitems
 
+  def name
+    url
+  end
 
 end

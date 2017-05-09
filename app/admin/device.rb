@@ -7,7 +7,7 @@ ActiveAdmin.register Device do
 # or
 #
 permit_params do
-  permitted = [:name, :ip]
+  permitted = [:name, :ip, :playlist_id, :place_id]
   permitted << :uuid if params[:action] == 'create' && current_user.admin?
   permitted
 end
