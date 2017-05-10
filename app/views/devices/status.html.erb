@@ -1,0 +1,20 @@
+<html>
+  <body>
+    <%= link_to "Retour à l'accueil",  admin_dashboard_path() %> <%= link_to "Retour à l'équipement",  admin_device_path(@device) %>
+
+    <h4>Information de la base de données:</h4>
+
+    <table border=1>
+      <tr><td>Id</td><td><%= @device.id %></td></tr>
+      <tr><td>Nom</td><td><%= @device.name %></td></tr>
+      <tr><td>Adresse IP</td><td><%= @device.ip %></td></tr>
+      <tr><td>UUID</td><td><%= @device.uuid %></td></tr>
+    </table>
+
+    <%= link_to "Rafraichir l'état",  status_device_path(@device) %>
+
+    <h4>l'équipement nous a répondu:</h4>
+    <%= raw @req %>
+
+  </body>
+</html>

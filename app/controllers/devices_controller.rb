@@ -1,7 +1,7 @@
 require 'net/http'
 
 class DevicesController < ApplicationController
-  before_action :set_device, only: [:show, :update, :destroy, :reload, :refresh, :stop, :start]
+  before_action :set_device, only: [:show, :update, :destroy, :reload, :refresh, :stop, :start, :status]
 
   # GET /devices
   def index
@@ -19,6 +19,13 @@ class DevicesController < ApplicationController
   def reload
     if ! @device.ip.nil?
       send_command(@device.ip,"reload")
+    end
+  end
+
+  # GET /devices/1/reload
+  def status
+    if ! @device.ip.nil?
+      send_command(@device.ip,"status")
     end
   end
 
@@ -94,8 +101,11 @@ class DevicesController < ApplicationController
       puts "Get uri:#{uri}"
       req = Net::HTTP.get(uri)
       puts "Reply:#{req}" #show result
+      @req = req
+
       respond_to do |format|
-        format.js  {}
+        format.js  {} unless cmd=="status"
+        format.html if cmd=="status"
       end
     end
 

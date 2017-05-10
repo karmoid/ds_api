@@ -24,16 +24,19 @@ show do
 end
 
 action_item only: %i(show) do
-  link_to 'Recharge', reload_device_path(device), remote: true
+  link_to 'Recharger', reload_device_path(device), remote: true
 end
 action_item only: %i(show) do
-  link_to "Stoppe", stop_device_path(device), remote: true
+  link_to "Stopper", stop_device_path(device), remote: true
 end
 action_item only: %i(show) do
-  link_to "Démarre", start_device_path(device), remote: true
+  link_to "Démarrer", start_device_path(device), remote: true
 end
 action_item only: %i(show) do
-  link_to "Rafraîchit", refresh_device_path(device), remote: true
+  link_to "Rafraîchir", refresh_device_path(device), remote: true
+end
+action_item only: %i(show) do
+  link_to "Etat",  status_device_path(device), target: :blank
 end
 
 sidebar "Equipement", only: [:show] do

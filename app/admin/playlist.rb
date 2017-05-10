@@ -12,14 +12,6 @@ permit_params do
 end
 
 show do
-  panel "Détail de la playlist" do
-    attributes_table_for playlist do
-      row :name
-      row :note
-      row :updated_at
-      row :created_at
-    end
-  end
   panel "Pages liés" do
     table_for playlist.playitems.order(:order) do
       column :page
@@ -27,6 +19,24 @@ show do
       column :cmd
       column :value
     end
+  end
+  panel "Equipement liés" do
+    table_for playlist.devices do
+      column("Name") {|device| link_to(device.name, admin_device_path(device))}
+      column :id
+      column :ip
+      column :uuid
+      column ("Edit") {|device| link_to("Edit", edit_admin_device_path(device))}
+    end
+  end
+end
+
+sidebar "Playlist", only: [:show] do
+  attributes_table_for playlist do
+    row :name
+    row :note
+    row :updated_at
+    row :created_at
   end
 end
 

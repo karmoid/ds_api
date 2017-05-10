@@ -39,6 +39,9 @@ ActiveAdmin.register_page "Dashboard" do
           column do
             span "#{device.updated_at}"
           end
+          column do
+            span link_to "Etat",  status_device_path(device), target: :blank
+          end
         end
       end
     end
@@ -71,6 +74,9 @@ ActiveAdmin.register_page "Dashboard" do
           end
           column do
             span "#{device.updated_at}"
+          end
+          column do
+            span link_to "Etat",  status_device_path(device), target: :blank
           end
         end
       end
