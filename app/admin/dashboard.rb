@@ -16,7 +16,10 @@ ActiveAdmin.register_page "Dashboard" do
           span "Nom"
         end
         column do
-          span "Identifiant unique"
+          span "Play list"
+        end
+        column do
+          span "Emplacement"
         end
         column do
           span "Dernière adresse IP"
@@ -24,14 +27,20 @@ ActiveAdmin.register_page "Dashboard" do
         column do
           span "Dernière maj"
         end
+        column do
+          span "Commande"
+        end
       end
-      Device.all.order("updated_at desc").limit(5).map do |device|
+      Device.all.order("updated_at desc").limit(10).map do |device|
         columns do
           column do
             span link_to(device.name, admin_device_path(device))
           end
           column do
-            span "#{device.uuid}"
+            span "#{device.playlist.name}"
+          end
+          column do
+            span "#{device.place.name}"
           end
           column do
             span "#{device.ip}"
@@ -59,6 +68,9 @@ ActiveAdmin.register_page "Dashboard" do
         end
         column do
           span "Dernière maj"
+        end
+        column do
+          span "Commande"
         end
       end
       Device.joins(:playlist).where(playlists: {name: "default"}).order("updated_at desc").map do |device|
